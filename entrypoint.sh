@@ -4,14 +4,15 @@
 # env | sort
 # jq < "$GITHUB_EVENT_PATH"
 
-CONTENT_TYPE="$1"
+PROJECT_URL="$1"
+INITIAL_COLUMN_NAME="$2"
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
 echo "**************************************************"
 env
 echo "**************************************************"
 echo "action passed $ACTION"
-echo "content passed $CONTENT_TYPE"
+echo "content passed $PROJECT_URL"
 echo "**************************************************"
 
 if [ "$ACTION" != opened ]; then
@@ -98,8 +99,8 @@ if [ -z "$INITIAL_COLUMN_ID" ]; then
   exit 1
 fi
 
-case "$CONTENT_TYPE" in
-  issue)
+case "$GITHUB_EVENT_NAME" in
+  issues)
     ISSUE_ID=$(jq -r '.issue.id' < "$GITHUB_EVENT_PATH")
 
     # Add this issue to the project column
@@ -118,7 +119,7 @@ case "$CONTENT_TYPE" in
      "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards"
     ;;
   *)
-    echo "Invalid arg $CONTENT_TYPE" >&2
+    echo "Nothing to be done on this action: $GITHUB_EVENT_NAME" >&2
     exit 1
     ;;
 esac
