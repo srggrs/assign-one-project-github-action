@@ -1,0 +1,16 @@
+# action.yml
+name: 'Assign to Project'
+description: 'Assign Issue or Pull Request to default project'
+inputs:
+  project:  # id of input
+    description: 'Assigned Project'
+    required: true
+  column:  # id of input
+    description: 'Assigned Column'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.project }}
+    - ${{ inputs.column }}

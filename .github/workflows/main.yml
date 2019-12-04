@@ -1,0 +1,32 @@
+name: Auto Assign Project
+
+on: [pull_request, issues]
+# env:
+#   TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to One Project
+    steps:
+    # To use this repository's private action, you must check out the repository
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: List folder
+      run: ls .
+
+    - name: Run assignment
+      uses: ./ # Uses an action in the root directory
+      with:
+        project: 'https://github.com/srggrs/test-assign-project-action/projects/2'
+        column: 'To do'
+
+    # - name: Hello world action step
+    #   id: hello
+    #   uses: actions/hello-world-docker-action@v1
+    #   with:
+    #     who-to-greet: 'Mona the Octocat'
+    # # Use the output from the `hello` step
+    # - name: Get the output time
+    #   run: echo "The time was ${{ steps.hello.outputs.time }}"
