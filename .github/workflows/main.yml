@@ -1,8 +1,8 @@
 name: Auto Assign Project
 
 on: [pull_request, issues]
-# env:
-#   TOKEN: ${{ secrets.GITHUB_TOKEN }}
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
