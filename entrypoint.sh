@@ -73,14 +73,17 @@ find_project_id() {
 }
 
 find_column_id() {
-  echo "looking for columns"
+  echo "looking for columns" >&2
   _PROJECT_ID="$1"
   _INITIAL_COLUMN_NAME="$2"
 
-  echo "vars: $_PROJECT_ID and $ _INITIAL_COLUMN_NAME"
+  echo "vars: $_PROJECT_ID and $_INITIAL_COLUMN_NAME" >&2
   _COLUMNS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
+
+  echo "cols: $_COLUMNS" >&2
+
   echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
