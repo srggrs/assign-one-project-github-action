@@ -9,9 +9,9 @@ ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
 # echo "**************************************************"
 # env
-echo "**************************************************"
-echo "action passed $ACTION"
-echo "content passed $PROJECT_URL"
+# echo "**************************************************"
+# echo "action passed $ACTION"
+# echo "content passed $PROJECT_URL"
 echo "**************************************************"
 
 if [ "$ACTION" != opened ]; then
