@@ -5,7 +5,6 @@
 # jq < "$GITHUB_EVENT_PATH"
 
 PROJECT_URL="$1"
-INITIAL_COLUMN_NAME="$2"
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
 echo "**************************************************"
@@ -89,6 +88,12 @@ if [ "$PROJECT_TYPE" = org ] || [ "$PROJECT_TYPE" = user ]; then
   TOKEN="$MY_GITHUB_TOKEN" # It's User's personal access token. It should be secret.
 else
   TOKEN="$GITHUB_TOKEN"    # GitHub sets. The scope in only the repository containing the workflow file.
+fi
+
+# assing the column name by default
+INITIAL_COLUMN_NAME='To do'
+if [ "$GITHUB_EVENT_NAME" == pull_request ]; then
+  INITIAL_COLUMN_NAME='In progress'
 fi
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")

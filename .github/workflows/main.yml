@@ -20,7 +20,6 @@ jobs:
       uses: ./ # Uses an action in the root directory
       with:
         project: 'https://github.com/srggrs/test-assign-project-action/projects/2'
-        column: 'To do'
 
     # - name: Hello world action step
     #   id: hello
