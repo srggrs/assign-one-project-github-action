@@ -1,4 +1,4 @@
-name: Auto Assign Project
+name: Auto Assign Project Local
 
 on: [pull_request, issues]
 env:
