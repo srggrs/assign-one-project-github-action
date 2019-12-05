@@ -19,7 +19,7 @@ jobs:
     - name: Run assignment
       uses: ./ # Uses an action in the root directory
       with:
-        project: 'https://github.com/srggrs/test-assign-project-action/projects/2'
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 
     # - name: Hello world action step
     #   id: hello
