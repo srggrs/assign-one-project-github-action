@@ -73,8 +73,11 @@ find_project_id() {
 }
 
 find_column_id() {
+  echo "looking for columns"
   _PROJECT_ID="$1"
   _INITIAL_COLUMN_NAME="$2"
+
+  echo "vars: $_PROJECT_ID and $ _INITIAL_COLUMN_NAME"
   _COLUMNS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
@@ -93,8 +96,11 @@ fi
 # assing the column name by default
 INITIAL_COLUMN_NAME='To do'
 if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+  echo "changing col name for PR event"
   INITIAL_COLUMN_NAME='In progress'
 fi
+
+echo "intial col name: $INITIAL_COLUMN_NAME"
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
