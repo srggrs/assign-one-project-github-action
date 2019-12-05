@@ -1,21 +1,42 @@
-# Hello world docker action
+# GitHub Action for Assing to One Project
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+[![License](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg?style=flat-square)][license]
+
+[license]: https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE
+
+Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default the issues are assinged to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
 
 ## Inputs
 
-### `who-to-greet`
+### `project`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The url of the project to be assigned to.
 
-## Outputs
+### `GITHUB_TOKEN`
 
-### `time`
-
-The time we greeted you.
+**Required** The enviromental variable for query github API.
 
 ## Example usage
 
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+Example of local action:
+
+```yaml
+name: Auto Assign Project Local
+
+on: [pull_request, issues]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to One Project
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Run assignment
+      uses: ./ # Uses an action in the root directory
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+```
