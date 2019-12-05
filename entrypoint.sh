@@ -7,8 +7,8 @@
 PROJECT_URL="$1"
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
-echo "**************************************************"
-env
+# echo "**************************************************"
+# env
 echo "**************************************************"
 echo "action passed $ACTION"
 echo "content passed $PROJECT_URL"
@@ -98,6 +98,9 @@ fi
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
+
+env
+echo "**************************************************"
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
   echo "INITIAL_COLUMN_ID is not found." >&2
