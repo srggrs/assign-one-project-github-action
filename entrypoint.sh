@@ -7,13 +7,6 @@
 PROJECT_URL="$1"
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
-# echo "**************************************************"
-# env
-# echo "**************************************************"
-# echo "action passed $ACTION"
-# echo "content passed $PROJECT_URL"
-echo "**************************************************"
-
 if [ "$ACTION" != opened ]; then
   echo "This action was ignored. (ACTION: $ACTION)"
   exit 0
@@ -62,28 +55,27 @@ find_project_id() {
   _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
-  echo "curl result: $_PROJECTS" >&2
 
-  if [ "$(echo "$_PROJECTS" | jq '. | length == 0')" = true ]; then
+  _PROJECTID=$(jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
+
+  if [ "$_PROJECTID" != "" ]; then
+    echo "$_PROJECTID"
+  else
     echo "No project was found." >&2
-    false
+    exit 1
   fi
-
-  echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id"
-  unset _PROJECT_TYPE _PROJECT_URL _ORG_NAME _USER_NAME _ENDPOINT _PROJECTS
+  
+  unset _PROJECT_TYPE _PROJECT_URL _ORG_NAME _USER_NAME _ENDPOINT _PROJECTS _PROJECTID
 }
 
 find_column_id() {
-  echo "looking for columns" >&2
   _PROJECT_ID="$1"
   _INITIAL_COLUMN_NAME="$2"
 
-  echo "vars: $_PROJECT_ID and $_INITIAL_COLUMN_NAME" >&2
   _COLUMNS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
-  echo "cols: $_COLUMNS" >&2
 
   echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
@@ -104,16 +96,9 @@ if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
   INITIAL_COLUMN_NAME='In progress'
 fi
 
-echo "intial col name: $INITIAL_COLUMN_NAME"
 
-echo "input in find_project_id: $PROJECT_URL and $PROJECT_TYPE"
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
-echo "project id: $PROJECT_ID"
-echo "**************************************************"
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
-
-# env
-echo "**************************************************"
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
   echo "INITIAL_COLUMN_ID is not found." >&2
