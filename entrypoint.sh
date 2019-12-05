@@ -27,7 +27,7 @@ get_project_type() {
       ;;
     *)
       echo "Invalid PROJECT_URL: $_PROJECT_URL" >&2
-      false
+      exit 1
       ;;
   esac
 
