@@ -1,10 +1,12 @@
 # GitHub Action for Assing to One Project
 
-[![License](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg?style=flat-square)][license]
-
-[license]: https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE
+[![License](https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE)][license]
 
 Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default the issues are assinged to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
+
+## Ackowlegment & Motivations
+
+This action has been modified from the original action from [masutaka](https://github.com/masutaka/github-actions-all-in-one-project). I needed to fix it as the original docker container would not build. Also I think the GitHub Action syntax changed a bit.
 
 ## Inputs
 
