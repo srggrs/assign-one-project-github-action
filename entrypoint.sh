@@ -92,7 +92,7 @@ fi
 
 # assing the column name by default
 INITIAL_COLUMN_NAME='To do'
-if [ "$GITHUB_EVENT_NAME" == pull_request ]; then
+if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
   INITIAL_COLUMN_NAME='In progress'
 fi
 
