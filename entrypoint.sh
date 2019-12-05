@@ -106,6 +106,7 @@ fi
 echo "intial col name: $INITIAL_COLUMN_NAME"
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
+echo "project: $PROJECT_ID and $PROJECT_URL and $PROJECT_TYPE"
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
 
 env
