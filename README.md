@@ -1,6 +1,7 @@
 # GitHub Action for Assing to One Project
 
 [![Docker Automated build](https://img.shields.io/docker/automated/srggrs/assign-one-project-github-action)][docker]
+[![Docker Build Status](https://img.shields.io/docker/build/srggrs/assign-one-project-github-action)][docker]
 [![Docker Pulls](https://img.shields.io/docker/pulls/srggrs/assign-one-project-github-action)][docker]
 [![Docker Stars](https://img.shields.io/docker/stars/srggrs/assign-one-project-github-action)][docker]
 [![GitHub](https://img.shields.io/github/license/srggrs/assign-one-project-github-action)](https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE)
