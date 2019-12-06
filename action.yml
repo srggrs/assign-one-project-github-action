@@ -1,6 +1,6 @@
 # action.yml
 name: 'Assign to One Project'
-description: 'Assign Issue or Pull Request to default project'
+description: 'Assign new Issue or Pull Request to default project dashboard column'
 inputs:
   project:  # id of input
     description: 'Assigned Project'
