@@ -1,5 +1,7 @@
 # GitHub Action for Assing to One Project
 
+![GitHub](https://img.shields.io/github/license/srggrs/assign-one-project-github-action)
+
 Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default the issues are assinged to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
 
 ## Ackowlegment & Motivations
