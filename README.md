@@ -1,6 +1,12 @@
 # GitHub Action for Assing to One Project
 
-![GitHub](https://img.shields.io/github/license/srggrs/assign-one-project-github-action)
+[![Docker Automated build](https://img.shields.io/docker/automated/srggrs/assign-one-project-github-action)][docker]
+[![Docker Build Status](https://img.shields.io/docker/build/srggrs/assign-one-project-github-action)][docker]
+[![Docker Pulls](https://img.shields.io/docker/pulls/srggrs/assign-one-project-github-action)][docker]
+[![Docker Stars](https://img.shields.io/docker/stars/srggrs/assign-one-project-github-action)][docker]
+[![GitHub](https://img.shields.io/github/license/srggrs/assign-one-project-github-action)](https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE)
+
+[docker]: https://hub.docker.com/r/srggrs/assign-one-project-github-action
 
 Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default the issues are assinged to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
 
