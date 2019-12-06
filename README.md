@@ -41,7 +41,7 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Run assignment to one project
-      uses: docker://srggrs/assign-one-project-github-action:v1.0.0
+      uses: docker://srggrs/assign-one-project-github-action:1.1.0
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 ```

@@ -6,9 +6,9 @@ LABEL "com.github.actions.description"="Assign new Issue or Pull Request to defa
 LABEL "com.github.actions.icon"="box"
 LABEL "com.github.actions.color"="red"
 
-LABEL "repository"="https://github.com/srggrs/sandbox-github-actions"
-LABEL "homepage"="https://github.com/srggrs/sandbox-github-actions"
-LABEL "maintainer"="Sergio Pintaldi <sergio.pintaldi@gmail.com>"
+LABEL "repository"="https://github.com/srggrs/assign-one-project-github-action"
+LABEL "homepage"="https://github.com/srggrs/assign-one-project-github-action"
+LABEL "maintainer"="srggrs"
 
 RUN apk add --no-cache --no-progress curl jq
 
