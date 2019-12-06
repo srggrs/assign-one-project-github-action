@@ -40,11 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to One Project
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Run assignment
-      uses: ./ # Uses an action in the root directory
+    - name: Run assignment to one project
+      uses: docker://srggrs/assign-one-project-github-action:v1.0.0
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 ```
