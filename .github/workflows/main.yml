@@ -13,19 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: List folder
-      run: ls .
-
     - name: Run assignment
       uses: ./ # Uses an action in the root directory
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
-
-    # - name: Hello world action step
-    #   id: hello
-    #   uses: actions/hello-world-docker-action@v1
-    #   with:
-    #     who-to-greet: 'Mona the Octocat'
-    # # Use the output from the `hello` step
-    # - name: Get the output time
-    #   run: echo "The time was ${{ steps.hello.outputs.time }}"

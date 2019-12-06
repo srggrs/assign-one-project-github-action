@@ -1,5 +1,5 @@
 # action.yml
-name: 'Assign to Project'
+name: 'Assign to One Project'
 description: 'Assign Issue or Pull Request to default project'
 inputs:
   project:  # id of input
