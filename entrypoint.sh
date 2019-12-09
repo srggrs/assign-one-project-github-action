@@ -1,9 +1,13 @@
-#!/bin/sh -eu
+#!/bin/sh -l
 
-# echo "$@"
+env
+echo "***************************************************"
+set
+echo "***************************************************"
+echo "$@"
 # env | sort
 # jq < "$GITHUB_EVENT_PATH"
-
+echo "$1"
 PROJECT_URL="$1"
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 

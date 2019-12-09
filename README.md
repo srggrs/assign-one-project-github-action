@@ -42,6 +42,7 @@ jobs:
     steps:
     - name: Run assignment to one project
       uses: docker://srggrs/assign-one-project-github-action:1.3.0
+      if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 ```
