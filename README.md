@@ -4,7 +4,7 @@
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/srggrs/assign-one-project-github-action)][docker]
 [![Docker Pulls](https://img.shields.io/docker/pulls/srggrs/assign-one-project-github-action)][docker]
 [![Docker Stars](https://img.shields.io/docker/stars/srggrs/assign-one-project-github-action)][docker]
-[![License: MIT](https://img.shields.io/badge/License-MIT.svg)][license]
+[![GitHub license](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg)][license]
 
 [docker]: https://hub.docker.com/r/srggrs/assign-one-project-github-action
 [license]: https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE
