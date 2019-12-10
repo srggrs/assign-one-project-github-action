@@ -9,6 +9,11 @@ echo "$@"
 # jq < "$GITHUB_EVENT_PATH"
 echo "$1"
 PROJECT_URL="$1"
+if [ -z "$PROJECT_URL" ]; then
+  echo "PROJECT_URL is not defined." >&2
+  exit 1
+fi
+
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
 if [ "$ACTION" != opened ]; then
