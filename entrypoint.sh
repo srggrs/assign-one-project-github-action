@@ -1,14 +1,6 @@
 #!/bin/sh -l
 
-env
-echo "***************************************************"
-set
-echo "***************************************************"
-echo "$@"
-# env | sort
-# jq < "$GITHUB_EVENT_PATH"
-echo "$1"
-PROJECT_URL="$1"
+PROJECT_URL="$INPUT_PROJECT"
 if [ -z "$PROJECT_URL" ]; then
   echo "PROJECT_URL is not defined." >&2
   exit 1
