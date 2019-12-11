@@ -33,8 +33,6 @@ Example of action:
 name: Auto Assign Project
 
 on: [pull_request, issues]
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
@@ -42,7 +40,7 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Run assignment to one project
-      uses: docker://srggrs/assign-one-project-github-action:1.0.0
+      uses: srggrs/assign-one-project-github-action@1.0.1
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
