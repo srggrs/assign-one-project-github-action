@@ -9,5 +9,6 @@ jobs:
     steps:
     - name: Run assignment to one project
       uses: docker://srggrs/assign-one-project-github-action:testing
+      if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
