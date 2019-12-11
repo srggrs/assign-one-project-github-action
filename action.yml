@@ -8,12 +8,11 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://srggrs/assign-one-project-github-action:1.0.1'
+  image: 'docker://srggrs/assign-one-project-github-action:1.0.3'
   args:
     - ${{ inputs.project }}
-  env:
-    GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-    MY_GITHUB_TOKEN: '${{ secrets.MY_GITHUB_TOKEN }}'
+    - ${{ secrets.GITHUB_TOKEN }}
+    - ${{ secrets.MY_GITHUB_TOKEN }}
 
 branding:
   icon: 'box'
