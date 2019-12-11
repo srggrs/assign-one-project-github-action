@@ -7,9 +7,11 @@ inputs:
     required: true
   github_token:  # id of input
     description: 'repo github token'
+    required: true
     default: ${{ secrets.GITHUB_TOKEN }}
   my_github_token:  # id of input
     description: 'user or organisation github token'
+    required: true
     default: ${{ secrets.MY_GITHUB_TOKEN }}
 runs:
   using: 'docker'
