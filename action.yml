@@ -1,21 +1,17 @@
 # action.yml
 name: 'Assign to One Project'
 description: 'Assign new Issue or Pull Request to default project dashboard column'
+author: srggrs
 inputs:
   project:  # id of input
     description: 'Assigned Project'
     required: true
-  github_token:
-    description: 'Repo token'
-    required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
- 
+
 runs:
   using: 'docker'
-  image: 'docker://srggrs/assign-one-project-github-action:1.0.4'
+  image: 'docker://srggrs/assign-one-project-github-action:1.1.0'
   args:
     - ${{ inputs.project }}
-    - ${{ inputs.github_token }}
 
 branding:
   icon: 'box'

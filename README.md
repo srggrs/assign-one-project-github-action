@@ -21,18 +21,18 @@ This action has been modified from the original action from [masutaka](https://g
 
 **Required** The url of the project to be assigned to.
 
-### `GITHUB_TOKEN`
-
-**Required** The enviromental variable for query github API.
-
 ## Example usage
 
-Example of action:
+Examples of action:
+
+### Repository project
 
 ```yaml
 name: Auto Assign Project
 
 on: [pull_request, issues]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
@@ -40,8 +40,31 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Run assignment to one project
-      uses: srggrs/assign-one-project-github-action@1.0.4
-      if: github.event.action == 'opened'
+      uses: srggrs/assign-one-project-github-action@1.1.0
+      if: github.event.action == 'opened' # not required but speed up the action
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+```
+
+### Organisation or User project
+
+Generate a token from the Organisation settings or User Settings and add it as a secret in the repository secrets as `MY_GITHUB_TOKEN`
+
+```yaml
+name: Auto Assign Project
+
+on: [pull_request, issues]
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to One Project
+    steps:
+    - name: Run assignment to one project
+      uses: srggrs/assign-one-project-github-action@1.1.0
+      if: github.event.action == 'opened' # not required but speed up the action
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 ```
