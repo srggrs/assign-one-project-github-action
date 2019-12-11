@@ -5,11 +5,19 @@ inputs:
   project:  # id of input
     description: 'Assigned Project'
     required: true
+  github_token:  # id of input
+    description: 'repo github token'
+    default: ${{ secrets.GITHUB_TOKEN }}
+  my_github_token:  # id of input
+    description: 'user or organisation github token'
+    default: ${{ secrets.MY_GITHUB_TOKEN }}
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.project }}
+    - ${{ inputs.github_token }}
+    - ${{ inputs.my_github_token }}
 branding:
   icon: 'box'
   color: 'red'
