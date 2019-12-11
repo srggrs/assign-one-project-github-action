@@ -40,7 +40,7 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Run assignment to one project
-      uses: srggrs/assign-one-project-github-action@1.0.3
+      uses: srggrs/assign-one-project-github-action@1.0.4
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'

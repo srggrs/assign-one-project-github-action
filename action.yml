@@ -5,14 +5,17 @@ inputs:
   project:  # id of input
     description: 'Assigned Project'
     required: true
-
+  github_token:
+    description: 'Repo token'
+    required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
+ 
 runs:
   using: 'docker'
-  image: 'docker://srggrs/assign-one-project-github-action:1.0.3'
+  image: 'docker://srggrs/assign-one-project-github-action:1.0.4'
   args:
     - ${{ inputs.project }}
-    - ${{ secrets.GITHUB_TOKEN }}
-    - ${{ secrets.MY_GITHUB_TOKEN }}
+    - ${{ inputs.github_token }}
 
 branding:
   icon: 'box'
