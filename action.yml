@@ -12,8 +12,8 @@ runs:
   args:
     - ${{ inputs.project }}
   env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+    GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+    MY_GITHUB_TOKEN: '${{ secrets.MY_GITHUB_TOKEN }}'
 
 branding:
   icon: 'box'
