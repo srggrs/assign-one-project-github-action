@@ -1,4 +1,4 @@
-# GitHub Action for Assing to One Project
+# GitHub Action for Assign to One Project
 
 [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/srggrs/assign-one-project-github-action)][docker]
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/srggrs/assign-one-project-github-action)][docker]
@@ -9,9 +9,9 @@
 [docker]: https://hub.docker.com/r/srggrs/assign-one-project-github-action
 [license]: https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE
 
-Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default the issues are assinged to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
+Automatically add an issue or pull request to specific [GitHub Project](https://help.github.com/articles/about-project-boards/) when you __create__ them. By default, the issues are assigned to the `To do` column and the pull requests to the `In progress` one, so make sure you have those columns in your project dashboard.
 
-## Ackowlegment & Motivations
+## Acknowledgment & Motivations
 
 This action has been modified from the original action from [masutaka](https://github.com/masutaka/github-actions-all-in-one-project). I needed to fix it as the original docker container would not build. Also I think the GitHub Action syntax changed a bit.
 
