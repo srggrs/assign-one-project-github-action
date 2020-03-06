@@ -21,6 +21,10 @@ This action has been modified from the original action from [masutaka](https://g
 
 **Required** The url of the project to be assigned to.
 
+### `column_name`
+
+The column name of the project, defaults to `'To do'` for issues and `'In progress'` for pull requests.
+
 ## Example usage
 
 Examples of action:
@@ -41,9 +45,10 @@ jobs:
     steps:
     - name: Run assignment to one project
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'opened' # not required but speed up the action
+      if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'test')
       with:
-        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+        project: 'https://github.com/SunRunAway/assign-one-project-github-action/projects/1'
+        column_name: 'TODO'
 ```
 
 ### Organisation or User project
@@ -64,7 +69,8 @@ jobs:
     steps:
     - name: Run assignment to one project
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'opened' # not required but speed up the action
+      if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'test')
       with:
-        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+        project: 'https://github.com/SunRunAway/assign-one-project-github-action/projects/1'
+        column_name: 'TODO'
 ```

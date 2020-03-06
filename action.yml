@@ -12,6 +12,7 @@ runs:
   image: 'docker://srggrs/assign-one-project-github-action:1.1.0'
   args:
     - ${{ inputs.project }}
+    - ${{ inputs.column_name }}
 
 branding:
   icon: 'box'

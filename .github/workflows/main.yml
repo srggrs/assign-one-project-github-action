@@ -9,8 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to One Project
     steps:
-    - name: Run assignment to one project
+    - name: Run assignment to one project 1
       uses: srggrs/assign-one-project-github-action@1.1.0
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+    - name: Run assignment to one project 2
+      uses: srggrs/assign-one-project-github-action@1.1.0
+      if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'bug')
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
+        column_name: 'TODO'
