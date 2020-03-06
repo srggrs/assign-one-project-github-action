@@ -8,7 +8,7 @@ fi
 
 ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
 
-if [ "$ACTION" != opened ]; then
+if [ "$ACTION" != opened ] && [ "$ACTION" != labeled ]; then
   echo "This action was ignored. (ACTION: $ACTION)"
   exit 0
 fi
