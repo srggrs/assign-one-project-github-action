@@ -1,6 +1,10 @@
 name: Auto Assign Project Local
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [labeled]
+  pull_request:
+    types: [labeled]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -9,14 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to One Project
     steps:
-    - name: Run assignment to one project 1
+    - name: Assign issues with `test` and `question` labels to project 2
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'opened'
+      if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
-    - name: Run assignment to one project 2
+    - name: Assign issues and pull requests with `bug` label to project 3
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'bug')
+      if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
         column_name: 'TODO'
+        
