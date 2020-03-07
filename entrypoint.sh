@@ -94,7 +94,6 @@ else
 fi
 
 INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
-echo "$INPUT_COLUMN_NAME"
 if [ -z "$INITIAL_COLUMN_NAME" ]; then
   # assing the column name by default
   INITIAL_COLUMN_NAME='To do'

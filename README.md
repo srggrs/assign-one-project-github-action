@@ -47,7 +47,7 @@ jobs:
       uses: srggrs/assign-one-project-github-action@1.1.0
       if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'test')
       with:
-        project: 'https://github.com/SunRunAway/assign-one-project-github-action/projects/1'
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/1'
         column_name: 'TODO'
 ```
 
@@ -71,6 +71,6 @@ jobs:
       uses: srggrs/assign-one-project-github-action@1.1.0
       if: github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'test')
       with:
-        project: 'https://github.com/SunRunAway/assign-one-project-github-action/projects/1'
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/1'
         column_name: 'TODO'
 ```
