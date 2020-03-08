@@ -1,17 +1,21 @@
 # action.yml
 name: 'Assign to One Project'
-description: 'Assign new Issue or Pull Request to default project dashboard column'
+description: 'Assign Issue or Pull Request based on actoin to selected project dashboard column'
 author: srggrs
 inputs:
   project:  # id of input
-    description: 'Assigned Project'
+    description: 'The url of the project to be assigned to.'
     required: true
+  column_name:
+    description: 'The column name of the project, defaults to `'To do'` for issues and `'In progress'` for pull requests.'
+    required: false
 
 runs:
   using: 'docker'
   image: 'docker://srggrs/assign-one-project-github-action:1.1.0'
   args:
     - ${{ inputs.project }}
+    - ${{ inputs.column_name }}
 
 branding:
   icon: 'box'

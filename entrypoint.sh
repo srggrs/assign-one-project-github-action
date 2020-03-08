@@ -6,13 +6,6 @@ if [ -z "$PROJECT_URL" ]; then
   exit 1
 fi
 
-ACTION=$(jq -r '.action' < "$GITHUB_EVENT_PATH")
-
-if [ "$ACTION" != opened ]; then
-  echo "This action was ignored. (ACTION: $ACTION)"
-  exit 0
-fi
-
 get_project_type() {
   _PROJECT_URL="$1"
 
@@ -100,11 +93,14 @@ else
   TOKEN="$GITHUB_TOKEN"    # GitHub sets. The scope in only the repository containing the workflow file.
 fi
 
-# assing the column name by default
-INITIAL_COLUMN_NAME='To do'
-if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
-  echo "changing col name for PR event"
-  INITIAL_COLUMN_NAME='In progress'
+INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
+if [ -z "$INITIAL_COLUMN_NAME" ]; then
+  # assing the column name by default
+  INITIAL_COLUMN_NAME='To do'
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+    echo "changing col name for PR event"
+    INITIAL_COLUMN_NAME='In progress'
+  fi
 fi
 
 

@@ -21,6 +21,10 @@ This action has been modified from the original action from [masutaka](https://g
 
 **Required** The url of the project to be assigned to.
 
+### `column_name`
+
+The column name of the project, defaults to `'To do'` for issues and `'In progress'` for pull requests.
+
 ## Example usage
 
 Examples of action:
@@ -30,20 +34,30 @@ Examples of action:
 ```yaml
 name: Auto Assign Project
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [labeled]
+  pull_request:
+    types: [labeled]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
     runs-on: ubuntu-latest
-    name: Assign to One Project
+    name: Assign to Project(s)
     steps:
-    - name: Run assignment to one project
+    - name: Assign issues with `test` and `question` labels to one project 2
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'opened' # not required but speed up the action
+      if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+    - name: Assign issues and pull requests with `bug` label to one project 3
+      uses: srggrs/assign-one-project-github-action@1.1.0
+      if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
+        column_name: 'TODO'
 ```
 
 ### Organisation or User project
@@ -53,18 +67,28 @@ Generate a token from the Organisation settings or User Settings and add it as a
 ```yaml
 name: Auto Assign Project
 
-on: [pull_request, issues]
+on:
+  issues:
+    types: [labeled]
+  pull_request:
+    types: [labeled]
 env:
   MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
     runs-on: ubuntu-latest
-    name: Assign to One Project
+    name: Assign to Project(s)
     steps:
-    - name: Run assignment to one project
+    - name: Assign issues with `test` and `question` labels to project 2
       uses: srggrs/assign-one-project-github-action@1.1.0
-      if: github.event.action == 'opened' # not required but speed up the action
+      if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+    - name: Assign issues and pull requests with `bug` label to project 3
+      uses: srggrs/assign-one-project-github-action@1.1.0
+      if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
+        column_name: 'TODO
 ```
