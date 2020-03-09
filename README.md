@@ -15,6 +15,8 @@ Automatically add an issue or pull request to specific [GitHub Project](https://
 
 This action has been modified from the original action from [masutaka](https://github.com/masutaka/github-actions-all-in-one-project). I needed to fix it as the original docker container would not build. Also I think the GitHub Action syntax changed a bit.
 
+I would like to thank @SunRunAway for adding the labelling functionality.
+
 ## Inputs
 
 ### `project`
@@ -32,32 +34,47 @@ Examples of action:
 ### Repository project
 
 ```yaml
-name: Auto Assign Project
+name: Auto Assign to Project(s)
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
   pull_request:
-    types: [labeled]
+    types: [opened, labeled]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
     runs-on: ubuntu-latest
-    name: Assign to Project(s)
+    name: Assign to One Project
     steps:
-    - name: Assign issues with `test` and `question` labels to one project 2
-      uses: srggrs/assign-one-project-github-action@1.1.0
-      if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
+    - name: Assign NEW issues and NEW pull requests to project 2
+      uses: srggrs/assign-one-project-github-action@1.1.5
+      if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
-    - name: Assign issues and pull requests with `bug` label to one project 3
-      uses: srggrs/assign-one-project-github-action@1.1.0
-      if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
+
+    - name: Assign issues and pull requests with `bug` label to project 3
+      uses: srggrs/assign-one-project-github-action@1.1.5
+      if: >-
+        contains(github.event.issue.labels.*.name, 'bug') ||
+        contains(github.event.pull_request.labels.*.name, 'bug')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
-        column_name: 'TODO'
+        column_name: 'Labeled'
+```
+
+You can use any combination of conditions, for example to move only the issues to a specific project:
+```yaml
+...
+
+if: >-
+  github.event.action == 'opened' &&
+  contains(github.event.issue.labels.*.name, 'mylabel') ||
+  contains(github.event.pull_request.labels.*.name, 'mylabel')
+
+...
 ```
 
 ### Organisation or User project
@@ -65,30 +82,33 @@ jobs:
 Generate a token from the Organisation settings or User Settings and add it as a secret in the repository secrets as `MY_GITHUB_TOKEN`
 
 ```yaml
-name: Auto Assign Project
+name: Auto Assign to Project(s)
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
   pull_request:
-    types: [labeled]
+    types: [opened, labeled]
 env:
   MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
     runs-on: ubuntu-latest
-    name: Assign to Project(s)
+    name: Assign to One Project
     steps:
-    - name: Assign issues with `test` and `question` labels to project 2
-      uses: srggrs/assign-one-project-github-action@1.1.0
-      if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
+    - name: Assign NEW issues and NEW pull requests to project 2
+      uses: srggrs/assign-one-project-github-action@1.1.5
+      if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
+
     - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.1.0
-      if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
+      uses: srggrs/assign-one-project-github-action@1.1.5
+      if: >-
+        contains(github.event.issue.labels.*.name, 'bug') ||
+        contains(github.event.pull_request.labels.*.name, 'bug')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
-        column_name: 'TODO
+        column_name: 'Labeled'
 ```
