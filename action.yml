@@ -7,12 +7,12 @@ inputs:
     description: 'The url of the project to be assigned to.'
     required: true
   column_name:
-    description: 'The column name of the project, defaults to `'To do'` for issues and `'In progress'` for pull requests.'
+    description: 'The column name of the project, defaults to "To do" for issues and "In progress" for pull requests.'
     required: false
 
 runs:
   using: 'docker'
-  image: 'docker://srggrs/assign-one-project-github-action:1.1.2'
+  image: 'docker://srggrs/assign-one-project-github-action:1.1.3'
   args:
     - ${{ inputs.project }}
     - ${{ inputs.column_name }}
