@@ -1,0 +1,21 @@
+name: Auto Assign Opened
+
+# on: [pull_request, issues]
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to One Project
+    steps:
+    - name: Run assignment to one project
+      uses: srggrs/assign-one-project-github-action@1.1.2
+      # if: github.event.action == 'opened'
+      with:
+        project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
