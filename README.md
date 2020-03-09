@@ -15,7 +15,7 @@ Automatically add an issue or pull request to specific [GitHub Project](https://
 
 This action has been modified from the original action from [masutaka](https://github.com/masutaka/github-actions-all-in-one-project). I needed to fix it as the original docker container would not build. Also I think the GitHub Action syntax changed a bit.
 
-I would like to thank @SunRunAway for adding the labelling functionality.
+I would like to thank @SunRunAway for adding the labelling functionality and custom column input.
 
 ## Inputs
 
