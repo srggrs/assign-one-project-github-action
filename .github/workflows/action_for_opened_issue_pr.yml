@@ -1,11 +1,6 @@
 name: Auto Assign Opened
 
-# on: [pull_request, issues]
-on:
-  issues:
-    types: [opened]
-  pull_request:
-    types: [opened]
+on: [pull_request, issues]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -16,6 +11,6 @@ jobs:
     steps:
     - name: Run assignment to one project
       uses: srggrs/assign-one-project-github-action@1.1.2
-      # if: github.event.action == 'opened'
+      if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
