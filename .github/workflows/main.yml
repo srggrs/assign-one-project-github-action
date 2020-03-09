@@ -14,12 +14,12 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Assign issues with `test` and `question` labels to project 2
-      uses: srggrs/assign-one-project-github-action@1.1.0
+      uses: srggrs/assign-one-project-github-action@1.1.1
       if: contains(github.event.issue.labels.*.name, 'test') || contains(github.event.issue.labels.*.name, 'question')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
     - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.1.0
+      uses: srggrs/assign-one-project-github-action@1.1.1
       if: contains(github.event.issue.labels.*.name, 'bug') || contains(github.event.pull_request.labels.*.name, 'bug')
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
