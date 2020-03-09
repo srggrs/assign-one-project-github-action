@@ -57,7 +57,7 @@ jobs:
 
     - name: Assign issues and pull requests with `bug` label to project 3
       uses: srggrs/assign-one-project-github-action@1.1.5
-      if: >-
+      if: |
         contains(github.event.issue.labels.*.name, 'bug') ||
         contains(github.event.pull_request.labels.*.name, 'bug')
       with:
@@ -69,7 +69,7 @@ You can use any combination of conditions, for example to move only the issues t
 ```yaml
 ...
 
-if: >-
+if: |
   github.event.action == 'opened' &&
   contains(github.event.issue.labels.*.name, 'mylabel') ||
   contains(github.event.pull_request.labels.*.name, 'mylabel')
@@ -105,7 +105,7 @@ jobs:
 
     - name: Assign issues and pull requests with `bug` label to project 3
       uses: srggrs/assign-one-project-github-action@1.1.5
-      if: >-
+      if: |
         contains(github.event.issue.labels.*.name, 'bug') ||
         contains(github.event.pull_request.labels.*.name, 'bug')
       with:
