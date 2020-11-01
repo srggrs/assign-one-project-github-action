@@ -1,0 +1,21 @@
+name: Debug JSON
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  pull_request:
+    types: [opened, labeled, unlabeled]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  debugging:
+    runs-on: ubuntu-latest
+    name: Debugging
+    steps:
+    - name: Debugging JSON
+      run: |
+        echo "Event Type: ${{ github.event_name }}"
+        cat $GITHUB_EVENT_PATH
+
+
