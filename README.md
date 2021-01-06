@@ -66,7 +66,7 @@ jobs:
 ```
 
 #### __Notes__
-Be careful of using the coditions above (opened and labeled issues/PRs) because in such workflow, if the issue/PR is opened and labeled at the same time, it will be assigned to __both__ projects!
+Be careful of using the conditions above (opened and labeled issues/PRs) because in such workflow, if the issue/PR is opened and labeled at the same time, it will be assigned to __both__ projects!
 
 
 You can use any combination of conditions. For example, to assign new issues or issues labeled with 'mylabel' to a project column, use:
