@@ -97,7 +97,7 @@ INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
 if [ -z "$INITIAL_COLUMN_NAME" ]; then
   # assing the column name by default
   INITIAL_COLUMN_NAME='To do'
-  if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] || [ "$GITHUB_EVENT_NAME" == "pull_request_target" ]; then
     echo "changing col name for PR event"
     INITIAL_COLUMN_NAME='In progress'
   fi
@@ -122,7 +122,7 @@ case "$GITHUB_EVENT_NAME" in
      -d "{\"content_type\": \"Issue\", \"content_id\": $ISSUE_ID}" \
      "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards"
     ;;
-  pull_request)
+  pull_request|pull_request_target)
     PULL_REQUEST_ID=$(jq -r '.pull_request.id' < "$GITHUB_EVENT_PATH")
 
     # Add this pull_request to the project column
