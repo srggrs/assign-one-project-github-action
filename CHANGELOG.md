@@ -26,9 +26,15 @@ TBC
 ## [1.2.1](https://github.com/srggrs/assign-one-project-github-action/compare/prep-release-1.2.1...HEAD) (2021-03-07)
 
 #### Added
-* Added support for repository forks with `pull request target` event [#62](https://github.com/srggrs/assign-one-project-github-action/pull/62)
+* Added support for repository forks with `pull request target` event [#62](https://github.com/srggrs/assign-one-project-github-action/pull/62).
+* Added Changelog [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66).
+* Added Code of Conduct [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66).
 
-## [1.2.0](https://github.com/srggrs/assign-one-project-github-action/compare/prep-release-1.2.1...HEAD)
+#### Changed
+
+* Changed README with latest changes [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66).
+
+## [1.2.0](https://github.com/srggrs/assign-one-project-github-action/compare/prep-release-1.2.0...HEAD) ()
 
 Last release to start tracking changes.
 
@@ -38,6 +44,7 @@ Features:
 
 #### List of PRs
 
+- [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66) doc: added Changelog and code of conduct, change readme.
 - [#62](https://github.com/srggrs/assign-one-project-github-action/pull/62) feat: added support for Pull request target for forks of repository.
 - [#59](https://github.com/srggrs/assign-one-project-github-action/pull/59) doc: fix typo.
 - [#35](https://github.com/srggrs/assign-one-project-github-action/pull/35) feat: add support for custom column name.
