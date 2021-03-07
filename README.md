@@ -3,8 +3,8 @@
 [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/srggrs/assign-one-project-github-action)][docker]
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/srggrs/assign-one-project-github-action)][docker]
 [![Docker Pulls](https://img.shields.io/docker/pulls/srggrs/assign-one-project-github-action)][docker]
-[![Docker Stars](https://img.shields.io/docker/stars/srggrs/assign-one-project-github-action)][docker]
 [![GitHub license](https://img.shields.io/github/license/srggrs/assign-one-project-github-action.svg)][license]
+![Latest Version](https://img.shields.io/github/v/release/srggrs/assign-one-project-github-action?color=orange&label=latest%20release)
 
 [docker]: https://hub.docker.com/r/srggrs/assign-one-project-github-action
 [license]: https://github.com/srggrs/assign-one-project-github-action/blob/master/LICENSE
@@ -50,13 +50,13 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Assign NEW issues and NEW pull requests to project 2
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.2.1
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 
     - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.2.1
       if: |
         contains(github.event.issue.labels.*.name, 'bug') ||
         contains(github.event.pull_request.labels.*.name, 'bug')
@@ -103,13 +103,13 @@ jobs:
     name: Assign to One Project
     steps:
     - name: Assign NEW issues and NEW pull requests to project 2
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.2.1
       if: github.event.action == 'opened'
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 
     - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.2.0
+      uses: srggrs/assign-one-project-github-action@1.2.1
       if: |
         contains(github.event.issue.labels.*.name, 'bug') ||
         contains(github.event.pull_request.labels.*.name, 'bug')
@@ -117,3 +117,5 @@ jobs:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
         column_name: 'Labeled'
 ```
+
+## [Change Log](./CHANGELOG.md)
