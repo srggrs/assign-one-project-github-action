@@ -119,3 +119,5 @@ jobs:
 ```
 
 ## [Change Log](./CHANGELOG.md)
+
+Please refer to the list of changes [here](./CHANGELOG.md)

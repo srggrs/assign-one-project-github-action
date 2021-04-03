@@ -33,6 +33,7 @@ TBC
 #### Changed
 
 * Changed README with latest changes [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66).
+* Change action to use local Docker image [#68](https://github.com/srggrs/assign-one-project-github-action/pull/68).
 
 ## [1.2.0](https://github.com/srggrs/assign-one-project-github-action/compare/prep-release-1.2.0...HEAD) ()
 
@@ -44,6 +45,7 @@ Features:
 
 #### List of PRs
 
+- [#68](https://github.com/srggrs/assign-one-project-github-action/pull/68) fix: change action to use local dockerfile.
 - [#66](https://github.com/srggrs/assign-one-project-github-action/pull/66) doc: added Changelog and code of conduct, change readme.
 - [#62](https://github.com/srggrs/assign-one-project-github-action/pull/62) feat: added support for Pull request target for forks of repository.
 - [#59](https://github.com/srggrs/assign-one-project-github-action/pull/59) doc: fix typo.
