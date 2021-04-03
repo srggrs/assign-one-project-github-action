@@ -12,7 +12,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://srggrs/assign-one-project-github-action:1.2.0'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.project }}
     - ${{ inputs.column_name }}
