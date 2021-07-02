@@ -41,6 +41,8 @@ on:
     types: [opened, labeled]
   pull_request:
     types: [opened, labeled]
+  issue_comment:
+    types: [created]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -94,6 +96,8 @@ on:
     types: [opened, labeled]
   pull_request_target:
     types: [opened, labeled]
+  issue_comment:
+    types: [created]
 env:
   MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
 
