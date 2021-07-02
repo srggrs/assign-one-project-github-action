@@ -114,6 +114,7 @@ fi
 
 case "$GITHUB_EVENT_NAME" in
   issues)
+    ;&
   issue_comment)
     ISSUE_ID=$(jq -r '.issue.id' < "$GITHUB_EVENT_PATH")
 
