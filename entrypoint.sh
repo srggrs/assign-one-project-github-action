@@ -28,6 +28,11 @@ get_project_type() {
   unset _PROJECT_URL
 }
 
+get_next_url_from_headers() {
+  _HEADERS_FILE=$1
+  grep -i '^link' "$_HEADERS_FILE" | tr ',' '\n'| grep \"next\" | sed 's/.*<\(.*\)>.*/\1/'
+}
+
 find_project_id() {
   _PROJECT_TYPE="$1"
   _PROJECT_URL="$2"
@@ -35,31 +40,38 @@ find_project_id() {
   case "$_PROJECT_TYPE" in
     org)
       _ORG_NAME=$(echo "$_PROJECT_URL" | sed -e 's@https://github.com/orgs/\([^/]\+\)/projects/[0-9]\+@\1@')
-      _ENDPOINT="https://api.github.com/orgs/$_ORG_NAME/projects"
+      _ENDPOINT="https://api.github.com/orgs/$_ORG_NAME/projects?per_page=100"
       ;;
     user)
       _USER_NAME=$(echo "$_PROJECT_URL" | sed -e 's@https://github.com/users/\([^/]\+\)/projects/[0-9]\+@\1@')
-      _ENDPOINT="https://api.github.com/users/$_USER_NAME/projects"
+      _ENDPOINT="https://api.github.com/users/$_USER_NAME/projects?per_page=100"
       ;;
     repo)
-      _ENDPOINT="https://api.github.com/repos/$GITHUB_REPOSITORY/projects"
+      _ENDPOINT="https://api.github.com/repos/$GITHUB_REPOSITORY/projects?per_page=100"
       ;;
   esac
+  
+  _NEXT_URL="$_ENDPOINT"
 
-  _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
-           -H 'Accept: application/vnd.github.inertia-preview+json' \
-           "$_ENDPOINT")
+  while : ; do
 
-  _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
+    _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
+            -H 'Accept: application/vnd.github.inertia-preview+json' \
+            -D /tmp/headers \
+            "$_NEXT_URL")
 
-  if [ "$_PROJECTID" != "" ]; then
-    echo "$_PROJECTID"
-  else
-    echo "No project was found." >&2
-    exit 1
-  fi
+    _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
+    _NEXT_URL=$(get_next_url_from_headers '/tmp/headers')
 
-  unset _PROJECT_TYPE _PROJECT_URL _ORG_NAME _USER_NAME _ENDPOINT _PROJECTS _PROJECTID
+    if [ "$_PROJECTID" != "" ]; then
+      echo "$_PROJECTID"
+    elif [ "$_NEXT_URL" == "" ]; then
+      echo "No project was found." >&2
+      exit 1
+    fi
+  done
+
+  unset _PROJECT_TYPE _PROJECT_URL _ORG_NAME _USER_NAME _ENDPOINT _PROJECTS _PROJECTID _NEXT_URL
 }
 
 find_column_id() {
