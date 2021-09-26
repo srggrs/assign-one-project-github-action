@@ -74,7 +74,7 @@ You can use any combination of conditions. For example, to assign new issues or 
 ...
 
 if: |
-  github.event == 'issue' &&
+  github.event_name == 'issues' &&
   (
     github.event.action == 'opened' ||
     contains(github.event.issue.labels.*.name, 'mylabel')
