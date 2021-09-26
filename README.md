@@ -13,7 +13,7 @@ Automatically add an issue or pull request to specific [GitHub Project](https://
 
 ## Latest features:
 
-* added project pagination for seraching 100+ GitHub projects.
+* added project pagination for searching 100+ GitHub projects.
 
 ## Acknowledgment & Motivations
 
