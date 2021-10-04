@@ -2,7 +2,7 @@
 
 PROJECT_URL="$INPUT_PROJECT"
 if [ -z "$PROJECT_URL" ]; then
-  echo "PROJECT_URL is not defined." >&2
+  echo "Project input variable is not defined." >&2
   exit 1
 fi
 
@@ -20,7 +20,7 @@ get_project_type() {
       echo "repo"
       ;;
     *)
-      echo "Invalid PROJECT_URL: $_PROJECT_URL" >&2
+      echo "Invalid Project URL: '$_PROJECT_URL' . Please pass a valid Project URL in the project input variable" >&2
       exit 1
       ;;
   esac
@@ -110,7 +110,7 @@ if [ -z "$INITIAL_COLUMN_NAME" ]; then
   # assing the column name by default
   INITIAL_COLUMN_NAME='To do'
   if [ "$GITHUB_EVENT_NAME" == "pull_request" ] || [ "$GITHUB_EVENT_NAME" == "pull_request_target" ]; then
-    echo "changing col name for PR event"
+    echo "changing column name for PR event"
     INITIAL_COLUMN_NAME='In progress'
   fi
 fi
@@ -120,7 +120,7 @@ PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
-  echo "INITIAL_COLUMN_ID is not found." >&2
+  echo "Column name '$INITIAL_COLUMN_ID' is not found." >&2
   exit 1
 fi
 
@@ -144,7 +144,7 @@ case "$GITHUB_EVENT_NAME" in
      "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards"
     ;;
   *)
-    echo "Nothing to be done on this action: $GITHUB_EVENT_NAME" >&2
+    echo "Nothing to be done on this action: '$GITHUB_EVENT_NAME'" >&2
     exit 1
     ;;
 esac
