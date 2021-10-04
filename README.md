@@ -13,6 +13,7 @@ Automatically add an issue or pull request to specific [GitHub Project](https://
 
 ## Latest features:
 
+* included `issue_comment` as trigger for this action.
 * added project pagination for searching 100+ GitHub projects.
 
 ## Acknowledgment & Motivations

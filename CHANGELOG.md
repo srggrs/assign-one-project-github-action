@@ -23,6 +23,16 @@ TBC
 
 TBC
 
+## [1.3.1](https://github.com/srggrs/assign-one-project-github-action/compare/1.3.1...HEAD) (2021-10-04)
+
+#### Added
+
+* Added `issue_comment` as trigger [#69](https://github.com/srggrs/assign-one-project-github-action/pull/69).
+
+#### Fixed
+
+* Better error messages [#1dbdca2](https://github.com/srggrs/assign-one-project-github-action/commit/1dbdca2)
+
 ## [1.3.0](https://github.com/srggrs/assign-one-project-github-action/compare/1.3.0...HEAD) (2021-09-26)
 
 #### Added
