@@ -27,7 +27,7 @@ TBC
 
 #### Added
 
-* Added `issue_comment` as trigger [#69](https://github.com/srggrs/assign-one-project-github-action/pull/69).
+* Added `issue_comment` as trigger [#76](https://github.com/srggrs/assign-one-project-github-action/pull/76).
 
 #### Fixed
 
