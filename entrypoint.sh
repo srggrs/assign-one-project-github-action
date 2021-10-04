@@ -125,7 +125,7 @@ if [ -z "$INITIAL_COLUMN_ID" ]; then
 fi
 
 case "$GITHUB_EVENT_NAME" in
-  issues)
+  issues|issue_comment)
     ISSUE_ID=$(jq -r '.issue.id' < "$GITHUB_EVENT_PATH")
 
     # Add this issue to the project column
