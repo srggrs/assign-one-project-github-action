@@ -32,6 +32,10 @@ I would like to thank @SunRunAway for adding the labelling functionality and cus
 
 The column name of the project, defaults to `'To do'` for issues and `'In progress'` for pull requests.
 
+### `position`
+
+Position for new card. Defaults to `'top'`. Valid values are `'top'`, `'bottom'` and `'after:<card_id>'`.
+
 ## Example usage
 
 Examples of action:
@@ -62,7 +66,7 @@ jobs:
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/2'
 
-    - name: Assign issues and pull requests with `bug` label to project 3
+    - name: Assign issues and pull requests with `bug` label to project 3 at the bottom
       uses: srggrs/assign-one-project-github-action@1.2.1
       if: |
         contains(github.event.issue.labels.*.name, 'bug') ||
@@ -70,6 +74,7 @@ jobs:
       with:
         project: 'https://github.com/srggrs/assign-one-project-github-action/projects/3'
         column_name: 'Labeled'
+        position: 'bottom'
 ```
 
 #### __Notes__

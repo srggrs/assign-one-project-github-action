@@ -9,6 +9,10 @@ inputs:
   column_name:
     description: 'The column name of the project, defaults to "To do" for issues and "In progress" for pull requests.'
     required: false
+  position:
+    description: 'Position for new card. Defaults to "top". Valid values are "top", "bottom", "after:<card_id>".'
+    required: false
+
 
 runs:
   using: 'docker'
