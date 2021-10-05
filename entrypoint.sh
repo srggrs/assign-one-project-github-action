@@ -50,7 +50,7 @@ find_project_id() {
       _ENDPOINT="https://api.github.com/repos/$GITHUB_REPOSITORY/projects?per_page=100"
       ;;
   esac
-  
+
   _NEXT_URL="$_ENDPOINT"
 
   while : ; do
@@ -129,22 +129,33 @@ case "$GITHUB_EVENT_NAME" in
     ISSUE_ID=$(jq -r '.issue.id' < "$GITHUB_EVENT_PATH")
 
     # Add this issue to the project column
-    curl -s -X POST -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
+    _CARD=$(curl -s -X POST -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
      -H 'Accept: application/vnd.github.inertia-preview+json' \
      -d "{\"content_type\": \"Issue\", \"content_id\": $ISSUE_ID}" \
-     "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards"
+     "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards")
     ;;
   pull_request|pull_request_target)
     PULL_REQUEST_ID=$(jq -r '.pull_request.id' < "$GITHUB_EVENT_PATH")
 
     # Add this pull_request to the project column
-    curl -s -X POST -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
+    _CARD=$(curl -s -X POST -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
      -H 'Accept: application/vnd.github.inertia-preview+json' \
      -d "{\"content_type\": \"PullRequest\", \"content_id\": $PULL_REQUEST_ID}" \
-     "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards"
+     "https://api.github.com/projects/columns/$INITIAL_COLUMN_ID/cards")
     ;;
   *)
     echo "Nothing to be done on this action: '$GITHUB_EVENT_NAME'" >&2
     exit 1
     ;;
 esac
+
+CARD_ID=$(echo "$_CARD" | jq -r '.id')
+echo "Card $CARD_ID created."
+
+INITIAL_POSITION="$INPUT_POSITION"
+if [ -n "$INITIAL_POSITION" ] && [ "$INITIAL_POSITION" != "top" ]; then
+  curl -s -X POST -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
+     -H 'Accept: application/vnd.github.inertia-preview+json' \
+     -d "{\"position\": \"$INITIAL_POSITION\"}" \
+     "https://api.github.com/projects/columns/cards/$CARD_ID/moves"
+fi
